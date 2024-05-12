@@ -14,17 +14,16 @@
  * }
  */
 class Solution {
-    static void helper(TreeNode root,ArrayList <Integer> arr){
-        if(root==null){
-            return ;
-        }
-        arr.add(root.val);
-        helper(root.left,arr);
-        helper(root.right,arr);
-    }
+       
     public List<Integer> preorderTraversal(TreeNode root) {
         ArrayList <Integer> arr = new ArrayList <>();
-                helper(root,arr);
+         if(root==null){
+            return arr;
+        }
+        arr.add(root.val);
+        arr.addAll(preorderTraversal(root.left));
+        arr.addAll(preorderTraversal(root.right));
+    
  return arr;
     }
 }
