@@ -14,22 +14,37 @@
  * }
  */
 class Solution {
-    int diameter = 0;
-
-    int calculateHeight(TreeNode node) {
+    private int height(TreeNode node, int[] diameter) {
+        // Base case: If the node is null,
+        // return 0 indicating the
+        // height of an empty tree
         if (node == null) {
             return 0;
         }
 
-        int leftHeight = calculateHeight(node.left);
-        int rightHeight = calculateHeight(node.right);
+        // Recursively calculate the
+        // height of left and right subtrees
+        int[] lh = new int[1];
+        int[] rh = new int[1];
+        lh[0] = height(node.left, diameter);
+        rh[0] = height(node.right, diameter);
 
-        diameter = Math.max(diameter, leftHeight + rightHeight);
+        // Update the diameter with the maximum
+        // of current diameter or sum of
+        // left and right heights
+        diameter[0] = Math.max(diameter[0], lh[0] + rh[0]);
 
-        return 1 + Math.max(leftHeight, rightHeight);
+        // Return the height of
+        // the current node's subtree
+        return 1 + Math.max(lh[0], rh[0]);
     }
     public int diameterOfBinaryTree(TreeNode root) {
-        calculateHeight(root);
-        return diameter;
+        int[] diameter = new int[1];
+        diameter[0] = 0;
+        // Call the height function to traverse
+        // the tree and calculate diameter
+        height(root, diameter);
+        // Return the calculated diameter
+        return diameter[0];
     }
 }
