@@ -15,41 +15,39 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>>ans=new LinkedList<>();
-        
-        if(root==null){
-            return ans;
-        }
-        boolean leftToRight=true;
-        int index=0;
-        Queue<TreeNode>n=new LinkedList<>();
-        n.add(root);
-        while(!n.isEmpty()){
-            int count=n.size();
-            List<Integer>l=new ArrayList<>(count);
-            
-            for(int i=0;i<count;i++){
-                TreeNode cur=n.poll();
-        
-                if(cur.left!=null){
-                    n.add(cur.left);
-                }
-                if(cur.right!=null){
-                    n.add(cur.right);
-                }  
-                if(leftToRight){
-                    l.add(cur.val);
-                }
-                else{
-                    l.add(0,cur.val);
-                    //System.out.println(l);
-                } 
+        List<List<Integer>> result = new ArrayList<>();
+    if (root == null) {
+        return result;
+    }
+
+    Queue<TreeNode> nodesQueue = new LinkedList<>();
+    nodesQueue.offer(root);
+    boolean leftToRight = true;
+
+    while (!nodesQueue.isEmpty()) {
+        int size = nodesQueue.size();
+        List<Integer> row = new ArrayList<>(size);
+
+        for (int i = 0; i < size; i++) {
+            TreeNode node = nodesQueue.poll();
+            // Add elements to the end of the list
+            row.add(node.val);
+
+            if (node.left != null) {
+                nodesQueue.offer(node.left);
             }
-            leftToRight=!leftToRight;
-            ans.add(l);
+            if (node.right != null) {
+                nodesQueue.offer(node.right);
+            }
         }
-        return ans;
-        
-        
+        // Adjust the order based on zigzag
+        if (!leftToRight) {
+            Collections.reverse(row);
+        }
+        leftToRight = !leftToRight;
+        result.add(row);
+    }
+
+    return result;
     }
 }
