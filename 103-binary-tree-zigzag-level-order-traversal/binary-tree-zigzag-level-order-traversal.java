@@ -1,32 +1,55 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> ans = new ArrayList<>();
-        if (root == null)
+        List<List<Integer>>ans=new LinkedList<>();
+        
+        if(root==null){
             return ans;
-        Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
-        boolean leftToRight = true;
-
-        while (!q.isEmpty()) {
-            int size = q.size();
-            List<Integer> li = new ArrayList<>();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = q.poll();
-                if (leftToRight) {
-                    li.add(node.val);  // Add to end of list
-                } else {
-                    li.add(0, node.val);  // Add to beginning of list for reverse order
+        }
+        boolean leftToRight=true;
+        int index=0;
+        Queue<TreeNode>n=new LinkedList<>();
+        n.add(root);
+        while(!n.isEmpty()){
+            int count=n.size();
+            List<Integer>l=new ArrayList<>(count);
+            
+            for(int i=0;i<count;i++){
+                TreeNode cur=n.poll();
+        
+                if(cur.left!=null){
+                    n.add(cur.left);
                 }
-                if (node.left != null) {
-                    q.add(node.left);
+                if(cur.right!=null){
+                    n.add(cur.right);
+                }  
+                if(leftToRight){
+                    l.add(cur.val);
                 }
-                if (node.right != null) {
-                    q.add(node.right);
-                }
+                else{
+                    l.add(0,cur.val);
+                    //System.out.println(l);
+                } 
             }
-            leftToRight = !leftToRight;
-            ans.add(li);
+            leftToRight=!leftToRight;
+            ans.add(l);
         }
         return ans;
+        
+        
     }
 }
