@@ -1,7 +1,6 @@
 class Solution {
     public int reverse(int x) {
         int revNum=0;
-        int originalNum=x;
         while(x!=0){
             int lastDigit=x%10;
             if(revNum>Integer.MAX_VALUE/10 || revNum<Integer.MIN_VALUE/10) return 0;
