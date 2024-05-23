@@ -5,11 +5,9 @@ class Solution {
         int n=num;
         while(n>0){
             lastDigit=n%10;
-            if(lastDigit>0){
                 if(num%lastDigit==0){
                     count++;
-                }
-            }
+                }            
             n=n/10;
         }
         return count;
