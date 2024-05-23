@@ -3,11 +3,10 @@ class Solution {
         int num=x;
         int ld;
         int revNum=0;
-        while(num>0){
-            ld=num%10;
-            revNum=(revNum*10)+ld;
+        while(num>0){            
+            revNum=(revNum*10)+(num%10);
             num=num/10;
         }
-        return revNum==x?true:false;
+        return revNum==x;
     }
 }
