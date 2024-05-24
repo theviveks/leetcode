@@ -1,44 +1,62 @@
+import java.util.Random;
+
 class Solution {
-    void merge(int arr[], int l, int m, int r)
-    {
-         // Your code here
-         ArrayList <Integer> temp= new ArrayList <>();
-         int left=l;
-         int high=m+1;
-         while(left<=m && high<=r){
-             if(arr[left]<=arr[high]){
-                 temp.add(arr[left]);
-                 left++;
-             }
-             else{
-                 temp.add(arr[high]);
-                 high++;
-             }
-         }
-         while(left<=m){
-            temp.add(arr[left]);
-                 left++;
-         }
-         while(high<=r){
-             temp.add(arr[high]);
-                 high++;
-         }
-         for(int i=l;i<=r;i++){
-             arr[i]=temp.get(i-l);
-         }
-         
+    static Random random = new Random();
+
+    static void quickSort(int arr[], int low, int high) {
+        if (low < high) {
+            if (high - low + 1 <= 10) {
+                insertionSort(arr, low, high); // Switch to insertion sort for small arrays
+            } else {
+                int pivotIndex = randomizedPartition(arr, low, high);
+                quickSort(arr, low, pivotIndex - 1);
+                quickSort(arr, pivotIndex + 1, high);
+            }
+        }
     }
-    void mergeSort(int arr[], int l, int r)
-    {
-        //code here
-        if(l>=r) return ;
-        int mid=(l+r)/2;
-        mergeSort(arr,l,mid);
-        mergeSort(arr,mid+1,r);
-        merge(arr,l,mid,r);
+
+    static int randomizedPartition(int arr[], int low, int high) {
+        int randomIndex = random.nextInt(high - low + 1) + low;
+        swap(arr, randomIndex, low); // Swap random pivot with the first element
+        return partition(arr, low, high);
     }
+
+    static int partition(int arr[], int low, int high) {
+        int pivot = arr[low];
+        int i = low + 1;
+        int j = high;
+
+        while (i <= j) {
+            while (i <= high && arr[i] <= pivot) i++;
+            while (j >= low && arr[j] > pivot) j--;
+            if (i < j) {
+                swap(arr, i, j);
+            }
+        }
+        swap(arr, low, j);
+        return j;
+    }
+
+    static void insertionSort(int arr[], int low, int high) {
+        for (int i = low + 1; i <= high; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= low && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
     public int[] sortArray(int[] nums) {
-        mergeSort(nums,0,nums.length-1);
+        quickSort(nums, 0, nums.length - 1);
         return nums;
     }
 }
