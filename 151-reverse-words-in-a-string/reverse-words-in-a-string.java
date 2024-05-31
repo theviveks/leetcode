@@ -10,6 +10,6 @@ class Solution {
             i++;
             j--;
         }
-        return String.join(" ",words);
+        return s.join(" ",words);
     }
 }
