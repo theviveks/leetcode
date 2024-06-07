@@ -1,12 +1,12 @@
 class Solution {
     public int minDeletion(int[] nums) {
-        int res = 0, pre = -1;
-        for (int a : nums) {
-            if (a == pre)
-                res++;
-            else
-                pre = pre < 0 ? a : -1;
+        int counter = 0;
+        for (int i = 0; i < nums.length - 1; i += 2) {
+            if (nums[i] == nums[i + 1]) {
+                counter++;
+                i--;
+            }
         }
-        return pre < 0 ? res : res + 1;
+        return (nums.length - counter) % 2 == 1 ? ++counter : counter;
     }
 }
