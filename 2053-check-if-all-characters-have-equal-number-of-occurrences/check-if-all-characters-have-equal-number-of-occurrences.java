@@ -1,16 +1,15 @@
 class Solution {
     public boolean areOccurrencesEqual(String s) {
-        int[] counts = new int[26];
-
-        for (int i = 0; i < s.length(); i++)
-            counts[s.charAt(i) - 'a']++;
-
-        int count = counts[s.charAt(0) - 'a'];
-
-        for (int i = 1; i < counts.length; i++)
-            if (count != counts[i] && counts[i] != 0)
+        int [] ans= new int [26];
+        for(char c:s.toCharArray()){
+            ans[c-'a']++;
+        }
+        int val=ans[s.charAt(0)-'a'];
+        for(int n:ans){
+            if(n!=0 && n!=val){
                 return false;
-
+            }
+        }
         return true;
     }
 }
