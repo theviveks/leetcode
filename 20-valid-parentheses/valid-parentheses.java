@@ -1,18 +1,19 @@
 class Solution {
     public boolean isValid(String s) {
-        Stack <Character> ans=new Stack<>();
-        for(int i=0;i<s.length();i++){
-            char a=s.charAt(i);
-            if(a=='{' || a=='[' || a=='('){
-                ans.push(a);
+        int n=s.length();
+        Stack<Character> st= new Stack<>();
+        for(int i=0;i<n;i++){
+            char c=s.charAt(i);
+            if(c=='(' || c=='{' || c=='['){
+                st.push(c);
             }
-            else if(ans.empty()){
+            else if(st.isEmpty()){
                 return false;
             }
-            else if(a=='}' && ans.pop()!='{') return false;
-            else if(a==']' && ans.pop()!='[') return false;
-            else if(a==')' &&ans.pop()!='(') return false;
+            else if(c==')' && st.pop()!='(') return false;
+            else if(c=='}' && st.pop()!='{') return false;
+            else if(c==']' && st.pop()!='[') return false;
         }
-        return ans.empty();
+        return st.isEmpty();
     }
 }
