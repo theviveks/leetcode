@@ -10,7 +10,6 @@ class Solution {
         for(int i=0;i<temp.size();i++){
              nums[i]=temp.get(i);
         }
-        int nonZeros=temp.size();
         for(int i=temp.size();i<n;i++){
             nums[i]=0;
         }
