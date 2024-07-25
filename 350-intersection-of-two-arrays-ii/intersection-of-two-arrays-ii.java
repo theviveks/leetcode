@@ -7,7 +7,7 @@ class Solution {
         Arrays.sort(nums1);
         Arrays.sort(nums2);
         ArrayList<Integer> inter = new ArrayList<>();
-        
+
         while (i < nums1.length && j < nums2.length) {
             if (nums1[i] < nums2[j]) {
                 i++;
@@ -19,11 +19,12 @@ class Solution {
                 j++;
             }
         }
-        int [] ans= new int[inter.size()];
-        int index=0;
-        for(int k:inter){
-            ans[index++]=k;
+
+        int[] result = new int[inter.size()];
+        for (int k = 0; k < inter.size(); k++) {
+            result[k] = inter.get(k);
         }
-        return ans;
+
+        return result;
     }
 }
