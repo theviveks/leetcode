@@ -5,9 +5,9 @@ class Solution {
         for (int i = 0; i < n; i++) {
             mapp.put(nums[i], mapp.getOrDefault(nums[i], 0) + 1);
         }
-        for(int num:nums){
-            if(mapp.get(num)==1){
-                return num;
+        for(int i:mapp.keySet()){
+            if(mapp.get(i)==1){
+                return i;
             }
         }
         return -1;
