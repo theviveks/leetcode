@@ -9,7 +9,7 @@ class Solution {
                     count++;
                 }
             }
-            if (count > n / 2) {
+            if (count > (int)(n / 2)) {
                 return nums[i];
             }
         }
