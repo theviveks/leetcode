@@ -9,6 +9,12 @@ class Solution {
         }
     }
 
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
     public void nextPermutation(int[] nums) {
         int n = nums.length;
         int index = -1;
@@ -24,9 +30,7 @@ class Solution {
         }
         for (int i = n - 1; i >= index; i--) {
             if (nums[i] > nums[index]) {
-                int temp = nums[i];
-                nums[i] = nums[index];
-                nums[index] = temp;
+                swap(nums, i, index);
                 break;
             }
         }
