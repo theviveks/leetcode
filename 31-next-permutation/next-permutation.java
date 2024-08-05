@@ -1,4 +1,10 @@
 class Solution {
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
     public void reverse(int[] nums, int i, int j) {
         while (i < j) {
             int temp = nums[i];
@@ -7,13 +13,6 @@ class Solution {
             i++;
             j--;
         }
-
-    }
-
-    public void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
     }
 
     public void nextPermutation(int[] nums) {
@@ -29,9 +28,9 @@ class Solution {
             reverse(nums, 0, n - 1);
             return;
         } else {
-            for (int i = n - 1; i >= index; i--) {
+            for (int i = n - 1; i >= 0; i--) {
                 if (nums[i] > nums[index]) {
-                    swap(nums, i, index);
+                    swap(nums, index, i);
                     break;
                 }
             }
