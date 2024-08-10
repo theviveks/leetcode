@@ -5,6 +5,7 @@ class Solution {
         for(int i=0;i<n;i++){
             while(strs[i].indexOf(prefix)!=0){
                 prefix=prefix.substring(0,prefix.length()-1);
+                if (prefix.isEmpty()) return "";
             }
         }
         return prefix;
