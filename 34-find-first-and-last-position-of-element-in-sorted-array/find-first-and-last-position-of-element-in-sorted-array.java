@@ -1,5 +1,5 @@
 class Solution {
-    public int lowerBound(int[] nums,int n,int x){
+    public int lowerBound(int[] nums,int n, int x){
         int low=0;
         int high=n-1;
         int ans=n;
@@ -15,7 +15,7 @@ class Solution {
         }
         return ans;
     }
-    public int upperBound(int[] nums,int n,int x){
+    public int upperBound(int[] nums,int n, int x){
         int low=0;
         int high=n-1;
         int ans=n;
@@ -37,6 +37,6 @@ class Solution {
         if(lb==n || nums[lb]!=target){
             return new int[]{-1,-1};
         }
-        return new int[]{lb,upperBound(nums,n,target)-1};
+        return new int[] {lb,upperBound(nums,n,target)-1};
     }
 }
