@@ -7,13 +7,13 @@ class Solution {
         while(low<=high){
             long mid=(low+high)/2;
             if(mid*mid<=x){
-                low=mid+1;
                 ans=mid;
+                low=mid+1;
             }
             else{
                 high=mid-1;
             }
         }
-        return (int)high;
+        return (int)ans;
     }
 }
