@@ -16,7 +16,7 @@ class Solution {
         // maxi = Math.max(maxi, nums[i]);
         // }
         int low = 1;
-        int high = (int) 1e6;
+        int high = 1000000;
         int ans = -1;
         while (low <= high) { // log maxi
             int mid = (low + high) / 2;
