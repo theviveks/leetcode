@@ -9,16 +9,18 @@ class Solution {
 
     public int smallestDivisor(int[] nums, int threshold) {
         int n = nums.length;
-        int maxi = Integer.MIN_VALUE;
-        for (int i = 0; i < n; i++) {
-            maxi = Math.max(maxi, nums[i]);
-        }
+        if (n > threshold)
+            return -1;
+        // int maxi = Integer.MIN_VALUE;
+        // for (int i = 0; i < n; i++) { //N
+        // maxi = Math.max(maxi, nums[i]);
+        // }
         int low = 1;
-        int high = maxi;
+        int high = (int) 1e6;
         int ans = -1;
-        while (low <= high) {
+        while (low <= high) { // log maxi
             int mid = (low + high) / 2;
-            if (sumOfDivisor(nums, n, mid) <= threshold) {
+            if (sumOfDivisor(nums, n, mid) <= threshold) { // n
                 ans = mid;
                 high = mid - 1;
             } else {
