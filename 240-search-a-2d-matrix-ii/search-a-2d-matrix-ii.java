@@ -7,7 +7,7 @@ class Solution {
         while (row < n && col >= 0) {
             if (matrix[row][col] == target) {
                 return true;
-            } else if (matrix[row][col] > target) {
+            } else if (matrix[row][col] >= target) {
                 col--;
             } else {
                 row++;
