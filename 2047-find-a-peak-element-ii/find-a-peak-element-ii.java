@@ -1,7 +1,7 @@
 class Solution {
     public int findMaxIndex(int[][] mat, int n, int col) {
         int index = -1;
-        int maxIndex = Integer.MIN_VALUE;
+        int maxIndex = -1;
         for (int i = 0; i < n; i++) {
             if (mat[i][col] > maxIndex) {
                 maxIndex = mat[i][col];
@@ -22,8 +22,8 @@ class Solution {
             int maxIndexValue = findMaxIndex(mat, n, mid);
 
             int midValue = mat[maxIndexValue][mid];
-            int left = mid - 1 >= 0 ? mat[maxIndexValue][mid - 1] : Integer.MIN_VALUE;
-            int right = mid + 1 < m ? mat[maxIndexValue][mid + 1] : Integer.MIN_VALUE;
+            int left = mid - 1 >= 0 ? mat[maxIndexValue][mid - 1] : -1;
+            int right = mid + 1 < m ? mat[maxIndexValue][mid + 1] : -1;
 
             if (midValue > left && midValue > right) {
                 return new int[] { maxIndexValue, mid };
