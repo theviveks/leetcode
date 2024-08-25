@@ -9,7 +9,7 @@ class Solution {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (mat[i][j] > maxElement) {
-                    maxElement = mat[i][j];
+                    maxElement = Math.max(maxElement, mat[i][j]);
                     peakPosition[0] = i;
                     peakPosition[1] = j;
                 }
