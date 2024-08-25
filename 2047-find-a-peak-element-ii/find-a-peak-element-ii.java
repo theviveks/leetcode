@@ -16,24 +16,20 @@ class Solution {
         int m = mat[0].length;
         int low = 0;
         int high = m - 1;
-
         while (low <= high) {
             int mid = (low + high) / 2;
-            int maxIndexValue = findMaxIndex(mat, n, mid);
-
-            int midValue = mat[maxIndexValue][mid];
-            int left = mid - 1 >= 0 ? mat[maxIndexValue][mid - 1] : -1;
-            int right = mid + 1 < m ? mat[maxIndexValue][mid + 1] : -1;
-
+            int maxIndex = findMaxIndex(mat, n, mid);
+            int midValue = mat[maxIndex][mid];
+            int left = mid - 1 >= 0 ? mat[maxIndex][mid - 1] : -1;
+            int right = mid + 1 < m ? mat[maxIndex][mid + 1] : -1;
             if (midValue > left && midValue > right) {
-                return new int[] { maxIndexValue, mid };
-            } else if (midValue < left) {
-                high = mid - 1;
-            } else {
+                return new int[] { maxIndex, mid };
+            } else if (midValue > left) {
                 low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
-
         return new int[] { -1, -1 };
     }
 }
