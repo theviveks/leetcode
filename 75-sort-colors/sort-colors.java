@@ -4,7 +4,7 @@ class Solution {
         int left = low;
         int right = mid + 1;
         while (left <= mid && right <= high) {
-            if (nums[left] <= nums[right]) {
+            if (nums[left] < nums[right]) {
                 ans.add(nums[left]);
                 left++;
             } else {
