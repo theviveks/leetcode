@@ -1,27 +1,41 @@
 class Solution {
-    public void sortColors(int[] nums) {
-        int n=nums.length;
-        int count0=0,count1=0,count2=0;
-        for(int i=0;i<n;i++){
-            if(nums[i]==0){
-                count0++;
-            }
-            else if(nums[i]==1){
-                count1++;
-            }
-            else{
-                count2++;
+    public void merge(int[] nums, int low, int mid, int high) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int left = low;
+        int right = mid + 1;
+        while (left <= mid && right <= high) {
+            if (nums[left] <= nums[right]) {
+                ans.add(nums[left]);
+                left++;
+            } else {
+                ans.add(nums[right]);
+                right++;
             }
         }
+        while (left <= mid) {
+            ans.add(nums[left]);
+            left++;
+        }
+        while (right <= high) {
+            ans.add(nums[right]);
+            right++;
+        }
+        for (int i = low; i <= high; i++) {
+            nums[i] = ans.get(i - low);
+        }
+    }
 
-        for(int i=0;i<count0;i++){
-            nums[i]=0;
-        }
-        for(int i=count0;i<count0+count1;i++){
-            nums[i]=1;
-        }
-        for(int i=count0+count1;i<n;i++){
-            nums[i]=2;
-        }
+    public void mergeSort(int[] nums, int low, int high) {
+        if (low == high)
+            return;
+        int mid = (low + high) / 2;
+        mergeSort(nums, low, mid);
+        mergeSort(nums, mid + 1, high);
+        merge(nums, low, mid, high);
+    }
+
+    public void sortColors(int[] nums) {
+        int n = nums.length;
+        mergeSort(nums, 0, n - 1);
     }
 }
