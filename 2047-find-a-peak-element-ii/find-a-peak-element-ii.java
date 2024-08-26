@@ -1,10 +1,10 @@
 class Solution {
-    public int findMaxIndex(int[][] mat, int n, int col) {
+    public int findMaxValue(int mat[][], int n, int col) {
         int index = -1;
-        int maxIndex = -1;
+        int maxElement = -1;
         for (int i = 0; i < n; i++) {
-            if (mat[i][col] > maxIndex) {
-                maxIndex = mat[i][col];
+            if (mat[i][col] > maxElement) {
+                maxElement = mat[i][col];
                 index = i;
             }
         }
@@ -18,13 +18,13 @@ class Solution {
         int high = m - 1;
         while (low <= high) {
             int mid = (low + high) / 2;
-            int maxIndex = findMaxIndex(mat, n, mid);
-            int midValue = mat[maxIndex][mid];
+            int maxIndex = findMaxValue(mat, n, mid);
+            int maxValue = mat[maxIndex][mid];
             int left = mid - 1 >= 0 ? mat[maxIndex][mid - 1] : -1;
             int right = mid + 1 < m ? mat[maxIndex][mid + 1] : -1;
-            if (midValue > left && midValue > right) {
+            if (maxValue > left && maxValue > right) {
                 return new int[] { maxIndex, mid };
-            } else if (midValue > left) {
+            } else if (maxValue > left) {
                 low = mid + 1;
             } else {
                 high = mid - 1;
