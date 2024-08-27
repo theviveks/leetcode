@@ -22,11 +22,11 @@ class Solution {
         return j;
     }
 
-    public void quickSort(int[] nums, int low, int high) {
-        if (low < high) {
-            int pivotIndex = partition(nums, low, high);
-            quickSort(nums, low, pivotIndex - 1);
-            quickSort(nums, pivotIndex + 1, high);
+    public void quickSort(int[] nums,int low,int high){
+        if(low<high){
+            int pivotIndex=partition(nums,low,high);
+            quickSort(nums,low,pivotIndex-1);
+            quickSort(nums,pivotIndex+1,high);
         }
     }
 
