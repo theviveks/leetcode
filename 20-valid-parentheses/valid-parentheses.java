@@ -6,14 +6,14 @@ class Solution {
             char a = s.charAt(i);
             if (a == '{' || a == '[' || a == '(') {
                 ans.push(a);
-            } else if (ans.isEmpty()) {
-                return false;
-            } else if (a == '}' && ans.pop() != '{') {
-                return false;
-            } else if (a == ']' && ans.pop() != '[') {
-                return false;
-            } else if (a == ')' && ans.pop() != '(') {
-                return false;
+            } else {
+                if (ans.isEmpty()) {
+                    return false;
+                }
+                char ch = ans.pop();
+                if ((a == '}' && ch != '{') || (a == ')' && ch != '(') || (a == ']' && ch != '[')) {
+                    return false;
+                }
             }
         }
         return ans.isEmpty();
