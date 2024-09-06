@@ -11,7 +11,9 @@ class Solution {
                     return false;
                 }
                 char ch = ans.pop();
-                if ((a == '}' && ch != '{') || (a == ')' && ch != '(') || (a == ']' && ch != '[')) {
+                if ((a == '}' && ch != '{') ||
+                    (a == ')' && ch != '(') ||
+                    (a == ']' && ch != '[')) {
                     return false;
                 }
             }
