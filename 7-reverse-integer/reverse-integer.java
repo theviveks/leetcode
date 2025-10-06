@@ -1,14 +1,19 @@
 class Solution {
     public int reverse(int x) {
-        int revNum = 0;
-        while (x != 0) {
-            int lastDigit = x % 10;
-            if (revNum > Integer.MAX_VALUE / 10 || revNum < Integer.MIN_VALUE / 10) {
-                return 0;
-            }
-            revNum = (revNum * 10) + lastDigit;
-            x = x / 10;
+        return reverseHelper(x, 0);
+    }
+
+    private int reverseHelper(int x, int rev) {
+        if (x == 0) {
+            return rev;
         }
-        return revNum;
+
+        int ld = x % 10;
+
+        if (rev > Integer.MAX_VALUE / 10 || rev < Integer.MIN_VALUE / 10) {
+            return 0;
+        }
+
+        return reverseHelper(x / 10, rev * 10 + ld);
     }
 }
