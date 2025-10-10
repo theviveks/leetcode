@@ -1,38 +1,33 @@
-/**
- * Definition for a binary tree root.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
+
+
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        if (root == null) {
-            return arr;
-        }
+        List<Integer> ans = new ArrayList<>();
+        if (root == null) return ans;
+
         Stack<TreeNode> st = new Stack<>();
-        st.push(root);
-        while (!st.isEmpty()) {
-            root = st.pop();
-            arr.add(0,root.val);
-            
-            if (root.left != null) {
-                st.push(root.left);
+        TreeNode curr = root;
+        TreeNode lastVisited = null;
+
+        while (curr != null || !st.isEmpty()) {
+            // Go as left as possible
+            while (curr != null) {
+                st.push(curr);
+                curr = curr.left;
             }
-            if (root.right != null) {
-                st.push(root.right);
+
+            TreeNode peekNode = st.peek();
+
+            // If right child exists and hasn't been visited yet
+            if (peekNode.right != null && lastVisited != peekNode.right) {
+                curr = peekNode.right;
+            } else {
+                st.pop();
+                ans.add(peekNode.val);
+                lastVisited = peekNode;
             }
         }
 
-        return arr;
+        return ans;
     }
 }
