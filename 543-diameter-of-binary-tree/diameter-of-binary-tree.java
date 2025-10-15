@@ -14,16 +14,15 @@
  * }
  */
 class Solution {
-    private int maxDia = 0;
 
-    private int helper(TreeNode node) {
+    private int helper(TreeNode node, int[] maxDia) {
         if (node == null) {
             return 0;
         }
-        int lh = helper(node.left);
-        int rh = helper(node.right);
+        int lh = helper(node.left, maxDia);
+        int rh = helper(node.right, maxDia);
         int currDia = lh + rh;
-        maxDia = Math.max(maxDia, currDia);
+        maxDia[0] = Math.max(maxDia[0], currDia);
 
         return 1 + Math.max(lh, rh);
     }
@@ -32,7 +31,8 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        helper(root);
-        return maxDia;
+        int[] maxDia = new int[1];
+        helper(root, maxDia);
+        return maxDia[0];
     }
 }
