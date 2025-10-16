@@ -14,22 +14,25 @@
  * }
  */
 class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> ans = new ArrayList<>();
-        traverse(root, 0, ans);
-        return ans;
+    private void bfs(TreeNode root, List<List<Integer>> ans, int level) {
+        if (root == null) {
+            return;
+        }
+        if (ans.size() == level) {
+            ans.add(new ArrayList<>());
+        }
+        if (level % 2 == 0) {
+            ans.get(level).add(root.val);
+        } else {
+            ans.get(level).add(0, root.val);
+        }
+        bfs(root.left, ans, level + 1);
+        bfs(root.right, ans, level + 1);
     }
 
-    private void traverse(TreeNode node, int level, List<List<Integer>> ans) {
-        if (node == null)
-            return;
-        if (ans.size() == level)
-            ans.add(new ArrayList<>());
-        if (level % 2 == 0)
-            ans.get(level).add(node.val);
-        else
-            ans.get(level).add(0, node.val);
-        traverse(node.left, level + 1, ans);
-        traverse(node.right, level + 1, ans);
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        bfs(root, ans, 0);
+        return ans;
     }
 }
