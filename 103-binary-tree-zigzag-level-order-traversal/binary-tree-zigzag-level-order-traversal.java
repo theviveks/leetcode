@@ -24,7 +24,7 @@ class Solution {
         if (node == null)
             return;
         if (ans.size() == level)
-            ans.add(new LinkedList<>());
+            ans.add(new ArrayList<>());
         if (level % 2 == 0)
             ans.get(level).add(node.val);
         else
