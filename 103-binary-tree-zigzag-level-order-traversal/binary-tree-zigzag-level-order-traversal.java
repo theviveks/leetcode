@@ -24,14 +24,15 @@ class Solution {
         boolean leftToRight = true;
         while (!q.isEmpty()) {
             int size = q.size();
-            LinkedList<Integer> level = new LinkedList<>();
+            ArrayList<Integer> level = new ArrayList<>();
             for (int i = 0; i < size; i++) {
                 TreeNode current = q.poll();
-                if (!leftToRight) {
-                    level.addFirst(current.val);
+                if (leftToRight) {
+                    level.add(current.val);
                 } else {
-                    level.addLast(current.val);
+                    level.add(0, current.val);
                 }
+
                 if (current.left != null) {
                     q.offer(current.left);
                 }
