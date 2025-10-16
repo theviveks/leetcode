@@ -23,7 +23,7 @@ class Solution {
     private void traverse(TreeNode node, int level, List<List<Integer>> ans) {
         if (node == null)
             return;
-        if (ans.size() <= level)
+        if (ans.size() == level)
             ans.add(new LinkedList<>());
         if (level % 2 == 0)
             ans.get(level).add(node.val);
