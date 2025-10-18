@@ -14,27 +14,14 @@
  * }
  */
 class Solution {
-    private boolean isSame(TreeNode p, TreeNode q) {
-        if (p == null && q == null) {
-            return true;
-        }
-        if (p == null || q == null) {
-            return false;
-        }
-        if (p.val != q.val) {
-            return false;
-        }
-        return isSame(p.left, q.left) && isSame(p.right, q.right);
-
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        String tree1 = serialize(root);
+        String tree2 = serialize(subRoot);
+        return tree1.contains(tree2);
     }
 
-    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-        if (root == null) {
-            return false;
-        }
-        if (isSame(root, subRoot)) {
-            return true;
-        }
-        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    private String serialize(TreeNode node) {
+        if (node == null) return "#"; // null marker
+        return "," + node.val + "," + serialize(node.left) + "," + serialize(node.right);
     }
 }
