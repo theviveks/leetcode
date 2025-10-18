@@ -14,14 +14,25 @@
  * }
  */
 class Solution {
+    private String serialize(TreeNode node) {
+        StringBuilder sb = new StringBuilder();
+        serializeHelper(node, sb);
+        return sb.toString();
+    }
+
+    private void serializeHelper(TreeNode node, StringBuilder sb) {
+        if (node == null) {
+            sb.append("#"); // null marker
+            return;
+        }
+        sb.append("-#").append(node.val).append("-#");
+        serializeHelper(node.left, sb);
+        serializeHelper(node.right, sb);
+    }
+
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         String tree1 = serialize(root);
         String tree2 = serialize(subRoot);
         return tree1.contains(tree2);
-    }
-
-    private String serialize(TreeNode node) {
-        if (node == null) return "#"; // null marker
-        return "," + node.val + "," + serialize(node.left) + "," + serialize(node.right);
     }
 }
