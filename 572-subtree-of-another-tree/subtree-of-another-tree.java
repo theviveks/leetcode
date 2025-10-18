@@ -6,7 +6,7 @@
  *     TreeNode right;
  *     TreeNode() {}
  *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *     TreeNode(int val- TreeNode left- TreeNode right) {
  *         this.val = val;
  *         this.left = left;
  *         this.right = right;
@@ -17,11 +17,14 @@ class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         String tree1 = serialize(root);
         String tree2 = serialize(subRoot);
+        System.out.println(tree1);
+        System.out.println(tree2);
         return tree1.contains(tree2);
     }
 
     private String serialize(TreeNode node) {
-        if (node == null) return "#"; 
-        return "," + node.val + "," + serialize(node.left) + "," + serialize(node.right);
+        if (node == null)
+            return "#";
+        return "-" + node.val + serialize(node.left) + serialize(node.right);
     }
 }
