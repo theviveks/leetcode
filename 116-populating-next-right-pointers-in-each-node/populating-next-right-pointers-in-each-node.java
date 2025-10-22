@@ -22,26 +22,19 @@ class Node {
 */
 
 class Solution {
-    private void traverse(Node curr) {
-        if (curr.left != null) {
-            curr.left.next = curr.right;
-        }
-
-        if (curr.right != null && curr.next != null) {
-            curr.right.next = curr.next.left;
-        }
-
-        if (curr.left != null)
-            traverse(curr.left);
-        if (curr.right != null)
-            traverse(curr.right);
+    public Node connect(Node root) {
+        if (root == null)
+            return null;
+        connectNodes(root.left, root.right);
+        return root;
     }
 
-    public Node connect(Node root) {
-        if (root == null) {
-            return root;
-        }
-        traverse(root);
-        return root;
+    private void connectNodes(Node left, Node right) {
+        if (left == null || right == null)
+            return;
+        left.next = right;
+        connectNodes(left.left, left.right);
+        connectNodes(right.left, right.right);
+        connectNodes(left.right, right.left);
     }
 }
