@@ -3,8 +3,13 @@ class Solution {
         int n = haystack.length();
         int m = needle.length();
         for (int i = 0; i <= n - m; i++) {
-            String window = haystack.substring(i, i + m);
-            if (needle.contains(window)) {
+            int j;
+            for (j = 0; j < m; j++) {
+                if (haystack.charAt(i + j) != needle.charAt(j)) {
+                    break;
+                }
+            }
+            if (j == m) {
                 return i;
             }
         }
