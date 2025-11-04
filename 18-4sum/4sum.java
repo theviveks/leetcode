@@ -20,8 +20,8 @@ class Solution {
                     } else if (sum > target) {
                         l--;
                     } else {
-                        List<Integer> temp = Arrays.asList(nums[i], nums[j], nums[k], nums[l]);
-                        ans.add(temp);
+                        List<Integer> arr = Arrays.asList(nums[i], nums[j], nums[k], nums[l]);
+                        ans.add(arr);
                         k++;
                         l--;
                         while (k < l && nums[k] == nums[k - 1]) {
