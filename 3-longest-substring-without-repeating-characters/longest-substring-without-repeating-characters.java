@@ -7,7 +7,7 @@ class Solution {
         for (int right = 0; right < n; right++) {
             char c = s.charAt(right);
             if (mapp.containsKey(c) && mapp.get(c) >= left) {
-                left = mapp.get(c) + 1;
+                left = Math.max(mapp.get(c) + 1,left);
             }
             mapp.put(c, right);
             int len = right - left + 1;
