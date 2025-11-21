@@ -25,7 +25,7 @@ class Solution {
             if (hashMatches(hash1, hash2)) {
                 return true;
             }
-            hash2[s2.charAt(i) - 'a']--;
+            hash2[s2.charAt(i) - 97]--;
             hash2[s2.charAt(i + n) - 'a']++;
 
         }
