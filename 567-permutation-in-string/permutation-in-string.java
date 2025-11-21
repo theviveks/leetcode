@@ -1,13 +1,5 @@
 class Solution {
-    private boolean hashMatches(int[] hash1, int[] hash2) {
-        for (int i = 0; i < 26; i++) {
-            if (hash1[i] != hash2[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
+    
     public boolean checkInclusion(String s1, String s2) {
         int n = s1.length();
         int m = s2.length();
