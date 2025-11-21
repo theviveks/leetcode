@@ -1,16 +1,32 @@
-public class Solution {
-    public boolean checkInclusion(String s1, String s2) {
-        s1 = sort(s1);
-        for (int i = 0; i <= s2.length() - s1.length(); i++) {
-            if (s1.equals(sort(s2.substring(i, i + s1.length()))))
-                return true;
+class Solution {
+    private boolean hashMatches(int[] hash1, int[] hash2) {
+        for (int i = 0; i < 26; i++) {
+            if (hash1[i] != hash2[i]) {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 
-    public String sort(String s) {
-        char[] t = s.toCharArray();
-        Arrays.sort(t);
-        return new String(t);
+    public boolean checkInclusion(String s1, String s2) {
+        int n = s1.length();
+        int m = s2.length();
+                if (n > m) return false;
+
+        int[] hash1 = new int[26];
+        int[] hash2 = new int[26];
+        for (int i = 0; i < n; i++) {
+            hash1[s1.charAt(i) - 'a']++;
+            hash2[s2.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < m - n; i++) {
+            if (hashMatches(hash1, hash2)) {
+                return true;
+            }
+            hash2[s2.charAt(i) - 'a']--;
+            hash2[s2.charAt(i + n) - 'a']++;
+
+        }
+        return hashMatches(hash1, hash2);
     }
 }
