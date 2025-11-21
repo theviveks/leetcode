@@ -11,7 +11,9 @@ class Solution {
     public boolean checkInclusion(String s1, String s2) {
         int n = s1.length();
         int m = s2.length();
-                if (n > m) return false;
+        if (n > m) {
+            return false;
+        }
 
         int[] hash1 = new int[26];
         int[] hash2 = new int[26];
