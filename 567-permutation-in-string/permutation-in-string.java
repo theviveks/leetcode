@@ -18,15 +18,15 @@ class Solution {
         int[] hash1 = new int[26];
         int[] hash2 = new int[26];
         for (int i = 0; i < n; i++) {
-            hash1[s1.charAt(i) - 'a']++;
-            hash2[s2.charAt(i) - 'a']++;
+            hash1[s1.charAt(i) - 97]++;
+            hash2[s2.charAt(i) - 97]++;
         }
         for (int i = 0; i < m - n; i++) {
             if (hashMatches(hash1, hash2)) {
                 return true;
             }
             hash2[s2.charAt(i) - 97]--;
-            hash2[s2.charAt(i + n) - 'a']++;
+            hash2[s2.charAt(i + n) - 97]++;
 
         }
         return hashMatches(hash1, hash2);
