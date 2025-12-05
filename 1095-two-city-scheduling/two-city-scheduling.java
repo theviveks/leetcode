@@ -1,11 +1,11 @@
 class Solution {
     public int twoCitySchedCost(int[][] costs) {
-        int n = costs.length;
+        Arrays.sort(costs, (a, b) -> (b[1] - b[0]) - (a[1] - a[0]));
         int ans = 0;
-        Arrays.sort(costs, (a, b) -> (a[0] - a[1]) - (b[0] - b[1]));
-        for (int i = 0; i < n / 2; i++) {
+        int n = costs.length / 2;
+        for (int i = 0; i < n; i++) {
             ans += costs[i][0];
-            ans += costs[i + n / 2][1];
+            ans += costs[i + n][1];
         }
         return ans;
     }
