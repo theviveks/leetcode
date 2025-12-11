@@ -17,6 +17,10 @@ class Solution {
             ans.add(nums[i]);
             i++;
         }
-        return ans.toArray(new int[ans.size()][]);
+        int[][] res = new int[ans.size()][2];
+        for (int j = 0; j < ans.size(); j++) {
+            res[j] = ans.get(j);
+        }
+        return res;
     }
 }
