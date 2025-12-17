@@ -11,7 +11,7 @@ class Solution {
             partitionEnd = Math.max(partitionEnd, lastOccurance[s.charAt(i) - 'a']);
             if (i == partitionEnd) {
                 ans.add(partitionEnd - partitionStart + 1);
-                partitionStart = i + 1;
+                partitionStart = partitionEnd + 1;
             }
         }
         return ans;
