@@ -10,7 +10,7 @@ class Solution {
         for (int i = 0; i < n; i++) {
             partitionEnd = Math.max(partitionEnd, lastOccurance[s.charAt(i) - 'a']);
             if (i == partitionEnd) {
-                ans.add(i - partitionStart + 1);
+                ans.add(partitionEnd - partitionStart + 1);
                 partitionStart = i + 1;
             }
         }
