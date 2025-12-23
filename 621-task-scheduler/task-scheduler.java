@@ -1,13 +1,12 @@
 class Solution {
     public int leastInterval(char[] tasks, int m) {
         int n = tasks.length;
+        int maxi = 0;
         int[] hash = new int[26];
         for (int i = 0; i < n; i++) {
-            hash[tasks[i] - 'A']++;
-        }
-        int maxi = 0;
-        for (int i = 0; i < hash.length; i++) {
-            maxi = Math.max(maxi, hash[i]);
+            int curr = tasks[i] - 'A';
+            hash[curr]++;
+            maxi = Math.max(maxi, hash[curr]);
         }
         int count = 0;
         for (int i = 0; i < 26; i++) {
