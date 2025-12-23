@@ -5,7 +5,6 @@ class Solution {
         for (int i = 0; i < n; i++) {
             hash[tasks[i] - 'A']++;
         }
-        System.out.println(Arrays.toString(hash));
         int maxi = 0;
         for (int i = 0; i < hash.length; i++) {
             maxi = Math.max(maxi, hash[i]);
