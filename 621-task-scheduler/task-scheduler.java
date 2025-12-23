@@ -4,9 +4,8 @@ class Solution {
         int maxi = 0;
         int[] hash = new int[26];
         for (int i = 0; i < n; i++) {
-            int curr = tasks[i] - 'A';
-            hash[curr]++;
-            maxi = Math.max(maxi, hash[curr]);
+            hash[tasks[i] - 'A']++;
+            maxi = Math.max(maxi, hash[tasks[i] - 'A']);
         }
         int count = 0;
         for (int i = 0; i < 26; i++) {
